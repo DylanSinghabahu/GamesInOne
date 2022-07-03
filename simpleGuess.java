@@ -25,14 +25,29 @@ public class simpleGuess {
         double random = (int)(Math.random()*10) + 1;
         return random;
     }
+
+
     public static void main(String[] args) {
 
         while (work) {
             question();
             Scanner sc = new Scanner(System.in);
             int option = sc.nextInt();
+
+            if (option == 2) {
+                System.out.println("So you've choosen option 2, Hangman? \nDo you wish to change your mind?\n(Y/N)");
+                char confirmation = sc.next().toUpperCase().charAt(0);
+                if (confirmation == 'Y') {
+                    continue;
+                }
+                if (confirmation == 'N') {
+                    System.out.println("abcdefg");
+                    System.out.println("-------");
+                }
+                
+            }
             if (option == 1) {
-                System.out.println("So you've choosen option 1? \nDo you wish to change your mind?\n(Y/N)");
+                System.out.println("So you've choosen option 1, Guessing Game? \nDo you wish to change your mind?\n(Y/N)");
                 char confirmation = sc.next().toUpperCase().charAt(0);
                 if (confirmation == 'Y') {
                     continue;
