@@ -2,10 +2,10 @@
 Just thought I try and make some simple games that come to mind, all into one program.
 Plan on optimising the program as well as reducing the clutter, after a foundation/base game is established. 
 
-<h1><b> UPDATE HISTORY:</b> </u></h1>
+<h1><b> UPDATE HISTORY:</b></h1>
 <h2>UPDATE 1 <small>(7/3/2022)</small></h2>
 <ul>
-  <li>An interactive game (through terminal) menu of options to choose a game
+  <li>An interactive game (through terminal) menu of options to choose a game</li>
     <br>
 </ul>
 <ul>
@@ -23,7 +23,14 @@ Plan on optimising the program as well as reducing the clutter, after a foundati
       <li> Ask user for input that serve as guesses</li>
       <li> Given x amount of inputs &rarr; game over </li>
     </ul>
-</ul>
+  </ul>
+  <h2> Bugs </h2>
+  <ul>
+    <li>Fixed last guess not being accounted for</li>
+    <li>Fixed mismatch input exceptions</li>
+    <li>Return to menu option is functioning</li>
+  </ul>
+
 
 
 
