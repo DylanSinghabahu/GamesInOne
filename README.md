@@ -32,7 +32,7 @@ Plan on optimising the program as well as reducing the clutter, after a foundati
   </ul>
 <h2>UPDATE 2 <small>(7/6/2022)</small></h2>
 <ul>
-  <li>Now includes another game: Hangman</li>
+  <li>Now includes the game Hangman!</li>
     <br>
 </ul>
 <ul>
