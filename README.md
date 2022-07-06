@@ -30,6 +30,29 @@ Plan on optimising the program as well as reducing the clutter, after a foundati
     <li>Fixed mismatch input exceptions</li>
     <li>Return to menu option is functioning</li>
   </ul>
+<h2>UPDATE 2 <small>(7/6/2022)</small></h2>
+<ul>
+  <li>Now includes another game: Hangman</li>
+    <br>
+</ul>
+<ul>
+  <li>Plans on improving everything</li>
+    <ul>
+      <li>Add different-coloured text to make it more visually appealing</li>
+      <li>Plans for different game difficulty's for the current games</li>
+      <ul>
+        <li> More complex and strange words for hangman </li>
+        <li> Increase guessing range for guessing game </li>
+      </ul>
+  </ul>
+  <br>
+  <li>Plans to include a drawing of hangman: </li>
+    <ul>
+      <li> Include if conditions where a variable is incremented for every wrong guess</li>
+      <li> Each increment prints out parts of the hangman user for input that serve as guesses</li>
+      <li> Given enough wrong guesses, the whole picture is "drawn" and it's game over game over </li>
+    </ul>
+  </ul>
 
 
 
