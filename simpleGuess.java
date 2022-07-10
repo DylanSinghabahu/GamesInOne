@@ -17,7 +17,10 @@ public class simpleGuess {
 
     public static void question() {
         System.out.println("=========================================");
-        System.out.println("== Hello, welcome to my Guessing Game! == \n== Please choose a game:               ==");
+        System.out.println("==    Hello, welcome to my Program     ==");
+        System.out.println("==                                     ==");
+        System.out.println("== Please choose a game:               ==");
+        System.out.println("==                                     ==");
         System.out.println("== 1. Guess the number                 == \n== 2. Hangman                          ==");
         System.out.println("=========================================");
     }
