@@ -55,8 +55,6 @@ public class simpleGuess {
         
         String theWord = array[index];
 
-        System.out.println(theWord);
-
         for (int i = 0; i < theWord.length(); i++) {
             line += " _ ";
         }
@@ -115,10 +113,10 @@ public class simpleGuess {
 
 
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
         while (work) {
             question();
-            Scanner sc = new Scanner(System.in);
             int option = sc.nextInt();
 
             if (option == 2) {
@@ -178,8 +176,8 @@ public class simpleGuess {
                     System.out.println("Want to try again (Y) or return to other options (R)?");
                     char secondConfirmation = sc.next().toUpperCase().charAt(0);
                     while (secondConfirmation != 'R' && secondConfirmation != 'Y') {
-                        System.out.println("Enter the letter or a word beginning with R to return to other options");
-                        System.out.println("Enter the letter or a word beginning with Y to play again");
+                        System.out.println("Enter R to return to other options");
+                        System.out.println("Enter Y to play again");
                         secondConfirmation = sc.next().toUpperCase().charAt(0);
                     }
                     if (secondConfirmation == 'Y') {
@@ -189,9 +187,7 @@ public class simpleGuess {
                         confirmation = 'R';
                     }
                 }
-            }     
+            } 
         }
-   
-
     }
 }
