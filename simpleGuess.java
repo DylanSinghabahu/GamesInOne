@@ -10,6 +10,7 @@ public class simpleGuess {
     private static final String ANSI_YELLOW = "\u001B[33m";
     private static boolean go = false;
 
+
     public static void intro() {
         System. out. println(ANSI_GREEN + "Loading...." + ANSI_RESET);
         System. out. println(ANSI_YELLOW + "A number has been selected from 1-10 (inclusive).\nGuess the number. You have 3 chances!" + ANSI_RESET);
@@ -29,9 +30,19 @@ public class simpleGuess {
         double random = (int)(Math.random()*10) + 1;
         return random;
     }
+    public static String hint(String theWord) {
+        String newWord ="";
+        String word[] = theWord.split("");
+        word[0] = "_";
+        for (String letter:word) {
+            newWord += letter;
+        }
+        return newWord;
+    }
 
     public static String easyHangman() {
         Scanner sc = new Scanner(System.in);
+        String hint = " ";
         String line = ""; 
         String usedLetters = "";
         String array[] = {"able", "acid", "aged", "also", "area", "army", "away", "baby", "back", "ball", "band", "bank", "base", "bath", "bear", "beat", "been", "beer", "bell", "belt", "best", "bill", "bird", "blow", "blue", "boat", "body", "bomb", "bond", "bone", "book", "boom", "born", "boss", "both", "bowl", "bulk", "burn", "bush", "busy", "call", "calm", "came", "camp", "card", "care", 
@@ -43,6 +54,8 @@ public class simpleGuess {
         int index = (int)(Math.random()*array.length);
         
         String theWord = array[index];
+
+        System.out.println(theWord);
 
         for (int i = 0; i < theWord.length(); i++) {
             line += " _ ";
@@ -57,23 +70,38 @@ public class simpleGuess {
         }
 
         for (int i = 0; i < arrayWord.length; i++) {
+            if (i == arrayWord.length-1) {
+                System.out.println("\n\n\nLast Guess, would you like a hint?\nYes\nNo");
+                hint = sc.next().toUpperCase().charAt(0)+"";
+                System.out.println("\n\n\n\n");
+            }
+            if (hint.equals("Y")) {
+                System.out.println("The word is " + hint(theWord));
+                System.out.println(Arrays.toString(arrayWord2));
+                System.out.println(line);  
+            }
+
             int left = arrayWord.length-i;
+            System.out.println("\n\n\n\n");
             System.out.println("Guess a letter!");
-            if (i !=0) {
+            if (i > 0) {
                 System.out.println("You have " + left + " guesses left");
             }
+            
             String guess = sc.next().charAt(0) + "";
+            System.out.println("\n\n\n\n");
+            guess = guess.toLowerCase();
             for (int j = 0; j < arrayWord.length; j++) {
-                if (guess.equals(arrayWord[j])) {
+                if (guess.equals(arrayWord[j].toLowerCase())) {
                     arrayWord2[j]=guess;
-                    System.out.println(Arrays.toString(arrayWord2));
-                    System.out.println(line);
                     i--;
                 }
-
             }
             usedLetters += " " + guess;
             System.out.println("Used letters:" + usedLetters);
+            System.out.println(Arrays.toString(arrayWord2));
+            System.out.println(line);    
+
             if (Arrays.equals(arrayWord, arrayWord2)) {
                 System.out.println("Nice, you guessed the word!");
                 i=arrayWord.length;
@@ -100,6 +128,7 @@ public class simpleGuess {
                     continue;
                 }
                 while (confirmation == 'N' || go) {
+                    System.out.println("\n\n\n\n");
                     System.out.println(easyHangman());
                     char confirmations = sc.next().toUpperCase().charAt(0);
                     if (confirmations == 'Y') {
