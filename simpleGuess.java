@@ -40,17 +40,32 @@ public class simpleGuess {
         return newWord;
     }
 
-    public static String easyHangman() {
+    public static String Hangman(String difficulty) {
         Scanner sc = new Scanner(System.in);
         String hint = " ";
+        boolean minus = false;
+        boolean hintAgain = true;
         String line = ""; 
+        boolean isDuplicate = true;
         String usedLetters = "";
-        String array[] = {"able", "acid", "aged", "also", "area", "army", "away", "baby", "back", "ball", "band", "bank", "base", "bath", "bear", "beat", "been", "beer", "bell", "belt", "best", "bill", "bird", "blow", "blue", "boat", "body", "bomb", "bond", "bone", "book", "boom", "born", "boss", "both", "bowl", "bulk", "burn", "bush", "busy", "call", "calm", "came", "camp", "card", "care", 
-        "case", "cash", "cast", "cell", "chat", "chip", "city", "club", "coal", "coat", "code", "cold", "come", "cook", "cool", "cope", "copy", "CORE", "cost", "crew", "crop", "dark", "data", "date", "dawn", "days", "dead", "deal", "dean", "dear", "debt", "deep", "deny", "desk", "dial", "diet", "disc", "disk", "does", "done", "door", "dose", "down", "draw", "drew", "drop", "drug", "dual", "duke", "dust", "duty", "each", "earn", "ease", "east", "easy", "edge", "else", "even", "ever", "evil", "exit", "face", "fact", "fail", "fair", "fall", "farm", "fast", "fate", "fear", "feed", "feel", "feet", "fell", "felt", "file", "fill", "film", "find", "fine", "fire", "firm", "fish", "five", "flat", "flow", "food", "foot", "ford", "form", "fort", "four", "free", "from", "fuel", "full", "fund", "gain", "game", "gate", "gave", "gear", "gene", "gift", "girl", "give", "glad", "goal", "goes", "gold", "Golf", "gone", "good", "gray", "grew", "grey", "grow", "gulf", "hair", "half", "hall", 
-        "hand", "hang", "hard", "harm", "hate", "have", "head", "hear", "heat", "held", "hell", "help", "here", "hero", "high", "hill", "hire", "hold", "hole", "holy", "home", "hope", "host", "hour", "huge", "hung", "hunt", "hurt", "idea", "inch", "into", "iron", "item", "jack", "jane", "jean", "john", "join", "jump", "jury", "just", "keen", "keep", "kent", "kept", "kick", "kill", "kind", "king", "knee", "knew", "know", "lack", "lady", "laid", "lake", "land", "lane", "last", "late", "lead", "left", "less", "life", "lift", "like", "line", "link", "list", "live", "load", "loan", "lock", "logo", "long", "look", "lord", "lose", "loss", "lost", "love", "luck", "made", "mail", "main", "make", "male", "many", "Mark", "mass", "matt", "meal", "mean", "meat", "meet", "menu", "mere", "mike", "mile", "milk", "mill", "mind", "mine", "miss", "mode", "mood", "moon", "more", "most", "move", "much", "must", "name", "navy", "near", "neck", "need", "news", "next", "nice", "nick", "nine", "none", 
-        "nose", "note", "okay", "once", "only", "onto", "open", "oral", "over", "pace", "pack", "page", "paid", "pain", "pair", "palm", "park", "part", "pass", "past", "path", "peak", "pick", "pink", "pipe", "plan", "play", "plot", "plug", "plus", "poll", "pool", "poor", "port", "post", "pull", "pure", "push", "race", "rail", "rain", "rank", "rare", "rate", "read", "real", "rear", "rely", "rent", "rest", "rice", "rich", "ride", "ring", "rise", "risk", "road", "rock", "role", "roll", "roof", "room", "root", "rose", "rule", "rush", "ruth", "safe", "said", "sake", "sale", "salt", "same", "sand", "save", "seat", "seed", "seek", "seem", "seen", "self", "sell", "send", "sent", "sept", "ship", "shop", "shot", "show", "shut", "sick", "side", "sign", "site", "size", "skin", "slip", "slow", "snow", "soft", "soil", "sold", "sole", "some", "song", "soon", "sort", "soul", "spot", "star", "stay", "step", "stop", "such", "suit", "sure", "take", "tale", "talk", "tall", "tank", "tape", "task", 
-        "team", "tech", "tell", "tend", "term", "test", "text", "than", "that", "them", "then", "they", "thin", "this", "thus", "till", "time", "tiny", "told", "toll", "tone", "tony", "took", "tool", "tour", "town", "tree", "trip", "true", "tune", "turn", "twin", "type", "unit", "upon", "used", "user", "vary", "vast", "very", "vice", "view", "vote", "wage", "wait", "wake", "walk", "wall", "want", "ward", "warm", "wash", "wave", "ways", "weak", "wear", "week", "well", "went", "were", "west", "what", "when", "whom", "wide", "wife", "wild", "will", "wind", "wine", "wing", "wire", "wise", "wish", "with", "wood", "word", "wore", "work", "yard", "yeah", "year", "your", "zero", "zone"};
-        
+        String array[];
+        String arrayUsed[];
+        boolean start=true;
+
+        if (difficulty.equals("e")) {
+            array = new String[]{"able", "acid", "aged", "also", "area", "army", "away", "baby", "back", "ball", "band", "bank", "base", "bath", "bear", "beat", "been", "beer", "bell", "belt", "best", "bill", "bird", "blow", "blue", "boat", "body", "bomb", "bond", "bone", "book", "boom", "born", "boss", "both", "bowl", "bulk", "burn", "bush", "busy", "call", "calm", "came", "camp", "card", "care", 
+            "case", "cash", "cast", "cell", "chat", "chip", "city", "club", "coal", "coat", "code", "cold", "come", "cook", "cool", "cope", "copy", "CORE", "cost", "crew", "crop", "dark", "data", "date", "dawn", "days", "dead", "deal", "dean", "dear", "debt", "deep", "deny", "desk", "dial", "diet", "disc", "disk", "does", "done", "door", "dose", "down", "draw", "drew", "drop", "drug", "dual", "duke", "dust", "duty", "each", "earn", "ease", "east", "easy", "edge", "else", "even", "ever", "evil", "exit", "face", "fact", "fail", "fair", "fall", "farm", "fast", "fate", "fear", "feed", "feel", "feet", "fell", "felt", "file", "fill", "film", "find", "fine", "fire", "firm", "fish", "five", "flat", "flow", "food", "foot", "ford", "form", "fort", "four", "free", "from", "fuel", "full", "fund", "gain", "game", "gate", "gave", "gear", "gene", "gift", "girl", "give", "glad", "goal", "goes", "gold", "Golf", "gone", "good", "gray", "grew", "grey", "grow", "gulf", "hair", "half", "hall", 
+            "hand", "hang", "hard", "harm", "hate", "have", "head", "hear", "heat", "held", "hell", "help", "here", "hero", "high", "hill", "hire", "hold", "hole", "holy", "home", "hope", "host", "hour", "huge", "hung", "hunt", "hurt", "idea", "inch", "into", "iron", "item", "jack", "jane", "jean", "john", "join", "jump", "jury", "just", "keen", "keep", "kent", "kept", "kick", "kill", "kind", "king", "knee", "knew", "know", "lack", "lady", "laid", "lake", "land", "lane", "last", "late", "lead", "left", "less", "life", "lift", "like", "line", "link", "list", "live", "load", "loan", "lock", "logo", "long", "look", "lord", "lose", "loss", "lost", "love", "luck", "made", "mail", "main", "make", "male", "many", "Mark", "mass", "matt", "meal", "mean", "meat", "meet", "menu", "mere", "mike", "mile", "milk", "mill", "mind", "mine", "miss", "mode", "mood", "moon", "more", "most", "move", "much", "must", "name", "navy", "near", "neck", "need", "news", "next", "nice", "nick", "nine", "none", 
+            "nose", "note", "okay", "once", "only", "onto", "open", "oral", "over", "pace", "pack", "page", "paid", "pain", "pair", "palm", "park", "part", "pass", "past", "path", "peak", "pick", "pink", "pipe", "plan", "play", "plot", "plug", "plus", "poll", "pool", "poor", "port", "post", "pull", "pure", "push", "race", "rail", "rain", "rank", "rare", "rate", "read", "real", "rear", "rely", "rent", "rest", "rice", "rich", "ride", "ring", "rise", "risk", "road", "rock", "role", "roll", "roof", "room", "root", "rose", "rule", "rush", "ruth", "safe", "said", "sake", "sale", "salt", "same", "sand", "save", "seat", "seed", "seek", "seem", "seen", "self", "sell", "send", "sent", "sept", "ship", "shop", "shot", "show", "shut", "sick", "side", "sign", "site", "size", "skin", "slip", "slow", "snow", "soft", "soil", "sold", "sole", "some", "song", "soon", "sort", "soul", "spot", "star", "stay", "step", "stop", "such", "suit", "sure", "take", "tale", "talk", "tall", "tank", "tape", "task", 
+            "team", "tech", "tell", "tend", "term", "test", "text", "than", "that", "them", "then", "they", "thin", "this", "thus", "till", "time", "tiny", "told", "toll", "tone", "tony", "took", "tool", "tour", "town", "tree", "trip", "true", "tune", "turn", "twin", "type", "unit", "upon", "used", "user", "vary", "vast", "very", "vice", "view", "vote", "wage", "wait", "wake", "walk", "wall", "want", "ward", "warm", "wash", "wave", "ways", "weak", "wear", "week", "well", "went", "were", "west", "what", "when", "whom", "wide", "wife", "wild", "will", "wind", "wine", "wing", "wire", "wise", "wish", "with", "wood", "word", "wore", "work", "yard", "yeah", "year", "your", "zero", "zone"};    
+        }
+        else {
+            array = new String[]{"asterisk", "apocryphal", "anemone", "colloquialism", "defibrillator", "explicit", "massachusetts", "synecdoche", "schadenfreude", "worcestershire", "phlegm", "chthonic", "pterodactyl", "mnemonic", "apropossolemn", "rendezvous", "gobbledegook", 
+            "pochemuchka", "chiaroscurist", "logorrhea", "tractable", "placate", "miser", "engender", "dogma", "homogeneous", "laconic", "quiescence", "anomalous", "venerate", "assuage", "digress", "corroborate", "buttress", "antipathy", "disabuse", "feigned", "diatribe", "obdurate", "precipitate", "pragmatic", "embellish", "prevaricate", "heresy", "aberrant", "fawn", "eulogy", 
+            "guile", "banal", "equivocal", "schadenfreude", "sesquipedalian"};
+        }
+
+
         int index = (int)(Math.random()*array.length);
         
         String theWord = array[index];
@@ -59,17 +74,21 @@ public class simpleGuess {
             line += " _ ";
         }
         String arrayWord[] = new String[theWord.length()];
+
         for (int i = 0; i < arrayWord.length; i++) {
             arrayWord[i] = theWord.charAt(i)+"";
         }
         String arrayWord2[] = new String[theWord.length()];
+
         for (int i =0; i < arrayWord2.length; i++) {
             arrayWord2[i] = " ";
         }
-
+        System.out.println(theWord);
         for (int i = 0; i < arrayWord.length; i++) {
-            if (i == arrayWord.length-1) {
+            if (i == arrayWord.length-1 && hintAgain) {
                 System.out.println("\n\n\nLast Guess, would you like a hint?\nYes\nNo");
+                System.out.println(Arrays.toString(arrayWord2));
+                System.out.println(line);
                 hint = sc.next().toUpperCase().charAt(0)+"";
                 System.out.println("\n\n\n\n");
             }
@@ -77,37 +96,70 @@ public class simpleGuess {
                 System.out.println("The word is " + hint(theWord));
                 System.out.println(Arrays.toString(arrayWord2));
                 System.out.println(line);  
+                hintAgain=false;
             }
 
-            int left = arrayWord.length-i;
-            System.out.println("\n\n\n\n");
-            System.out.println("Guess a letter!");
-            if (i > 0) {
-                System.out.println("You have " + left + " guesses left");
+            else {
+                System.out.println(Arrays.toString(arrayWord2));
+                System.out.println(line);  
+                System.out.println("Guess a letter!");
             }
             
-            String guess = sc.next().charAt(0) + "";
+            String guess = sc.next().toLowerCase().charAt(0) + "";
+            arrayUsed = usedLetters.trim().split("\\s");
+            System.out.println(Arrays.toString(arrayUsed));
+
+            for (int k = 0; k < arrayUsed.length; k++) {
+                if (guess.equals(arrayUsed[k])) {
+                    isDuplicate = true;
+                    break;
+                }
+                else {
+                    isDuplicate = false;
+                }
+            }
             System.out.println("\n\n\n\n");
-            guess = guess.toLowerCase();
             for (int j = 0; j < arrayWord.length; j++) {
                 if (guess.equals(arrayWord[j].toLowerCase())) {
                     arrayWord2[j]=guess;
-                    i--;
+                    minus = true;
+                }
+                else if (isDuplicate) {
+                    minus = true;
+                    break;
                 }
             }
-            usedLetters += " " + guess;
-            System.out.println("Used letters:" + usedLetters);
-            System.out.println(Arrays.toString(arrayWord2));
-            System.out.println(line);    
 
-            if (Arrays.equals(arrayWord, arrayWord2)) {
+            if (minus) {
+                i--;
+                minus = false;
+            }
+            else {
+                usedLetters += " " + guess;
+            }
+            int left = arrayWord.length-i-1;
+            if (left > 1 && !Arrays.equals(arrayWord, arrayWord2)) {
+                System.out.println("You have " + left + " guesses left");
+            }
+            else if (left == 0) {
+                break;
+            }
+            else if (Arrays.equals(arrayWord, arrayWord2)) {
                 System.out.println("Nice, you guessed the word!");
                 i=arrayWord.length;
+                break;
+
             }
+            else {
+                System.out.println("You have " + left + " guess left");
+            }
+
+
+            System.out.println("Used letters:" + usedLetters);
             
         }
         System.out.println("The word was " + theWord);
-        return "Would you like to play again?\nYes\nNo";
+        return "Would you like to play hangman again?\nYes\nNo";
 
     }
 
@@ -127,7 +179,14 @@ public class simpleGuess {
                 }
                 while (confirmation == 'N' || go) {
                     System.out.println("\n\n\n\n");
-                    System.out.println(easyHangman());
+                    System.out.println("What difficulty would you like to choose?\nEasy\nHard");
+                    String difficulty = sc.next().toLowerCase().charAt(0) + "";
+                    while (!difficulty.equals("e") && !difficulty.equals("h")) {
+                        System.err.println("Type \"Easy\" or \"e\" for easy difficulty and type \"Hard\" or \"h\" for hard difficulty");
+                        difficulty = sc.next().toLowerCase().charAt(0) + "";
+                        System.out.println(difficulty+"hi");
+                    }
+                    System.out.println(Hangman(difficulty));
                     char confirmations = sc.next().toUpperCase().charAt(0);
                     if (confirmations == 'Y') {
                         go = true;
