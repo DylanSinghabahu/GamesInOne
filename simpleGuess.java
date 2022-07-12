@@ -30,6 +30,10 @@ public class simpleGuess {
         double random = (int)(Math.random()*10) + 1;
         return random;
     }
+    public static double optionTwo() {
+        double random = (int)(Math.random()*30) + 1;
+        return random;
+    }
     public static String hint(String theWord) {
         String newWord ="";
         String word[] = theWord.split("");
@@ -51,6 +55,20 @@ public class simpleGuess {
         String array[];
         String arrayUsed[];
         boolean start=true;
+        String hangman[] = {
+        "  +---+\n  |   |\n      |\n      |\n      |\n      |\n=========", 
+
+        "  +---+\n  |   |\n  O   |\n      |\n      |\n      |\n=========",
+
+        "  +---+\n  |   |\n  O   |\n  |   |\n      |\n      |\n=========",
+
+        "  +---+\n  |   |\n  O   |\n /|   |\n      |\n      |\n=========", 
+        
+        "  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n=========",
+
+        "  +---+\n  |   |\n  O   |\n /|\\  |\n /    |\n      |\n=========",
+
+        "  +---+\n  |   |\n  O   |\n /|\\  |\n / \\  |\n      |\n========="};
 
         if (difficulty.equals("e")) {
             array = new String[]{"able", "acid", "aged", "also", "area", "army", "away", "baby", "back", "ball", "band", "bank", "base", "bath", "bear", "beat", "been", "beer", "bell", "belt", "best", "bill", "bird", "blow", "blue", "boat", "body", "bomb", "bond", "bone", "book", "boom", "born", "boss", "both", "bowl", "bulk", "burn", "bush", "busy", "call", "calm", "came", "camp", "card", "care", 
@@ -64,7 +82,6 @@ public class simpleGuess {
             "pochemuchka", "chiaroscurist", "logorrhea", "tractable", "placate", "miser", "engender", "dogma", "homogeneous", "laconic", "quiescence", "anomalous", "venerate", "assuage", "digress", "corroborate", "buttress", "antipathy", "disabuse", "feigned", "diatribe", "obdurate", "precipitate", "pragmatic", "embellish", "prevaricate", "heresy", "aberrant", "fawn", "eulogy", 
             "guile", "banal", "equivocal", "schadenfreude", "sesquipedalian"};
         }
-
 
         int index = (int)(Math.random()*array.length);
         
@@ -84,8 +101,9 @@ public class simpleGuess {
             arrayWord2[i] = " ";
         }
         System.out.println(theWord);
-        for (int i = 0; i < arrayWord.length; i++) {
-            if (i == arrayWord.length-1 && hintAgain) {
+        for (int i = 0; i < 6; i++) {
+            if (i == 5 && hintAgain) {
+                System.out.println(hangman[i]);
                 System.out.println("\n\n\nLast Guess, would you like a hint?\nYes\nNo");
                 System.out.println(Arrays.toString(arrayWord2));
                 System.out.println(line);
@@ -97,12 +115,15 @@ public class simpleGuess {
                 System.out.println(Arrays.toString(arrayWord2));
                 System.out.println(line);  
                 hintAgain=false;
+                System.out.println(hangman[i]);
             }
 
             else {
                 System.out.println(Arrays.toString(arrayWord2));
                 System.out.println(line);  
                 System.out.println("Guess a letter!");
+                System.out.println(hangman[i]);
+
             }
             
             String guess = sc.next().toLowerCase().charAt(0) + "";
@@ -137,15 +158,16 @@ public class simpleGuess {
             else {
                 usedLetters += " " + guess;
             }
-            int left = arrayWord.length-i-1;
+            int left = 6-i-1;
             if (left > 1 && !Arrays.equals(arrayWord, arrayWord2)) {
                 System.out.println("You have " + left + " guesses left");
             }
             else if (left == 0) {
+                System.out.println(hangman[i+1]);
                 break;
             }
             else if (Arrays.equals(arrayWord, arrayWord2)) {
-                System.out.println("Nice, you guessed the word!");
+                System.out.println("Nice, you guessed the word!\n\n\n");
                 i=arrayWord.length;
                 break;
 
@@ -166,6 +188,7 @@ public class simpleGuess {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        int key = 0;
 
         while (work) {
             question();
@@ -207,7 +230,18 @@ public class simpleGuess {
                     continue;
                 }
                 while (confirmation == 'N') {
-                    int key = (int)optionOne();
+                    System.out.println("Which difficulty would you like to choose?\nEasy\nHard");
+                    String difficulty = sc.next().toLowerCase().charAt(0) + "";
+                    while (!difficulty.equals("e") && !difficulty.equals("h")) {
+                        System.out.println("Type \"e\" for Easy or \"h\" for Hard difficulty");
+                        difficulty = sc.next().toLowerCase().charAt(0) + "";
+                    }
+                    if (difficulty.equals("e")) {
+                        key = (int)optionOne();
+                    }
+                    else {
+                        key = (int)optionTwo();
+                    }
                     intro();
                     int guess = sc.nextInt();
                     int i = 2;
