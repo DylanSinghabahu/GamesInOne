@@ -8,11 +8,17 @@ public class simpleGuess {
     private static final String ANSI_GREEN = "\u001B[32m"; 
     private static final String ANSI_RESET = "\u001B[0m";
     private static final String ANSI_YELLOW = "\u001B[33m";
+    private static final String ANSI_RED = "\033[0;31m";
+    private static final String RED_BOLD = "\033[1;31m";
+    private static final String YELLOW_UNDERLINED = "\033[4;33m";
+    private static final String GREEN_BOLD = "\033[1;32m";
+    private static final String GREEN = "\033[0;32m";
+
     private static boolean go = false;
 
 
     public static void intro() {
-        System. out. println(ANSI_GREEN + "Loading...." + ANSI_RESET);
+        System. out. println(ANSI_GREEN + "Loading...." + ANSI_RESET);//different print statements, ansi_reset = futile??
         System. out. println(ANSI_YELLOW + "A number has been selected from 1-10 (inclusive).\nGuess the number. You have 3 chances!" + ANSI_RESET);
     }
 
@@ -55,20 +61,20 @@ public class simpleGuess {
         String array[];
         String arrayUsed[];
         boolean start=true;
-        String hangman[] = {
-        "  +---+\n  |   |\n      |\n      |\n      |\n      |\n=========", 
+        String hangman[] = {RED_BOLD+
+            RED_BOLD+"  +---+\n  |   |\n      |\n      |\n      |\n      |\n=========", 
 
-        "  +---+\n  |   |\n  O   |\n      |\n      |\n      |\n=========",
+            RED_BOLD+ "  +---+\n  |   |\n  O   |\n      |\n      |\n      |\n=========",
 
-        "  +---+\n  |   |\n  O   |\n  |   |\n      |\n      |\n=========",
+            RED_BOLD+ "  +---+\n  |   |\n  O   |\n  |   |\n      |\n      |\n=========",
 
-        "  +---+\n  |   |\n  O   |\n /|   |\n      |\n      |\n=========", 
+            RED_BOLD+"  +---+\n  |   |\n  O   |\n /|   |\n      |\n      |\n=========", 
         
-        "  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n=========",
+            RED_BOLD+"  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n=========",
 
-        "  +---+\n  |   |\n  O   |\n /|\\  |\n /    |\n      |\n=========",
+            RED_BOLD+"  +---+\n  |   |\n  O   |\n /|\\  |\n /    |\n      |\n=========",
 
-        "  +---+\n  |   |\n  O   |\n /|\\  |\n / \\  |\n      |\n========="};
+            RED_BOLD+"  +---+\n  |   |\n  O   |\n /|\\  |\n / \\  |\n      |\n========="};
 
         if (difficulty.equals("e")) {
             array = new String[]{"able", "acid", "aged", "also", "area", "army", "away", "baby", "back", "ball", "band", "bank", "base", "bath", "bear", "beat", "been", "beer", "bell", "belt", "best", "bill", "bird", "blow", "blue", "boat", "body", "bomb", "bond", "bone", "book", "boom", "born", "boss", "both", "bowl", "bulk", "burn", "bush", "busy", "call", "calm", "came", "camp", "card", "care", 
@@ -100,11 +106,12 @@ public class simpleGuess {
         for (int i =0; i < arrayWord2.length; i++) {
             arrayWord2[i] = " ";
         }
-        System.out.println(theWord);
+        System.out.println(ANSI_GREEN+"Please make sure the terminal is large enough to see your guess count"+ANSI_RESET);
+        System.out.println(RED_BOLD+"You have 6 guesses!"+ANSI_RESET);
         for (int i = 0; i < 6; i++) {
             if (i == 5 && hintAgain) {
                 System.out.println(hangman[i]);
-                System.out.println("\n\n\nLast Guess, would you like a hint?\nYes\nNo");
+                System.out.println(ANSI_YELLOW+"Last Guess, would you like a hint?\n"+ANSI_RESET+ANSI_GREEN+"Yes"+ANSI_RESET+ANSI_RED+"\nNo"+ANSI_RESET);
                 System.out.println(Arrays.toString(arrayWord2));
                 System.out.println(line);
                 hint = sc.next().toUpperCase().charAt(0)+"";
@@ -121,14 +128,13 @@ public class simpleGuess {
             else {
                 System.out.println(Arrays.toString(arrayWord2));
                 System.out.println(line);  
-                System.out.println("Guess a letter!");
+                System.out.println(YELLOW_UNDERLINED+"Guess a letter!"+ANSI_RESET);
                 System.out.println(hangman[i]);
 
             }
             
             String guess = sc.next().toLowerCase().charAt(0) + "";
             arrayUsed = usedLetters.trim().split("\\s");
-            System.out.println(Arrays.toString(arrayUsed));
 
             for (int k = 0; k < arrayUsed.length; k++) {
                 if (guess.equals(arrayUsed[k])) {
@@ -177,10 +183,10 @@ public class simpleGuess {
             }
 
 
-            System.out.println("Used letters:" + usedLetters);
+            System.out.println(ANSI_RED +"Used letters:" +ANSI_RESET + ANSI_YELLOW + usedLetters + ANSI_RESET);
             
         }
-        System.out.println("The word was " + theWord);
+        System.out.println(GREEN+"The word was " +ANSI_RESET+ GREEN_BOLD+theWord+ANSI_RESET);
         return "Would you like to play hangman again?\nYes\nNo";
 
     }
